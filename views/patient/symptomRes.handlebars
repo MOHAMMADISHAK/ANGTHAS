@@ -1,0 +1,71 @@
+<link rel='stylesheet' href='https://yaireo.github.io/tagify/dist/tagify.css'>
+<link rel="stylesheet" href="/css/tagStyle.css">
+
+{{> _patientNav}}
+<!-- end of navbar -->
+
+<!-- patient table -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-9 col-md-8 ml-auto mt-4">
+        <div class="pt-md-5 mt-md-3 mb-5 col-xl-12">
+          <div class="container">
+            <h3 class="text-info font-weight-bold text-center mb-3">Symptom Checker Result</h3>
+          </div>
+          <div class="col-12"  style="border:0px solid grey;">
+            <!-- Search box -->
+
+            {{#each diagnosis}}
+            {{!-- <div class="card mb-3">
+              <div class="card-header">
+                {{diseaseName}}
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: {{floor matchPercent}}%" aria-valuenow={{matchPercent}} aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Treatment</h5>
+                <p class="card-text">See more information</p>
+              </div>
+            </div>  --}}
+
+            <div class="card border-secondary mb-3">
+              <div class="card-header">{{diseaseName}}</div>
+              <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{floor matchPercent}}%" aria-valuenow={{matchPercent}} aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="card-body text-secondary">
+                {{!-- <h5 class="card-title">Secondary card title</h5> --}}
+
+                {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+                <a href="/patient/{{@root.userName}}/disease/{{diseaseName}}">
+                <button type="button" class="btn btn-outline-secondary">About {{diseaseName}}</button>
+                </a>
+
+                <!-- <a href="doctrs/{{docType}}">
+                  <button type="button" class="btn btn-outline-dark">See Doctor</button>
+                </a> -->
+              </div>
+            </div>
+
+
+            {{else}}
+            <div class="container">
+              <h3 class="text-info">No Match Found</h3>
+            </div>
+
+
+
+            {{/each}}
+            <!-- End of SearchBox               -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of table -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/tagify/3.14.3/tagify.min.js'></script>
+<script type="text/javascript" src="/js/symptomScript.js"></script>

@@ -1,0 +1,106 @@
+
+<!-- navbar -->
+{{> _docNav}}
+<!-- end of navbar -->
+
+
+<!--  Admin Profile -->
+
+<section>
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col-xl-10 col-lg-9 col-md-8 ml-auto mt-4">
+        <div class="pt-md-5 mt-md-3 mb-5 col-xl-12">
+          <form class="form-horizontal" role="form" action="editDoctorProfile/?_method=PUT" method="post">
+            <input type="hidden" id="userId" value="{{user._id}}">
+         <!-- Form starts for Profile edit -->
+         <div class="container">
+          <h3>Edit Profile</h3>
+          <hr>
+          <div class="row d-flex justify-content-center">
+            <!-- left column -->
+            <div class="col-xl-4 col-md-12">
+              <div class="text-center">
+                {{#if image}}
+                <img src="/uploads/{{image}}" id ='profilepic' width=100 class="avatar img-circle" alt="avatar">
+                {{else}}
+                <img src="/images/admin.png" id ='profilepic' width=100 class="avatar img-circle" alt="avatar">
+                {{/if}}
+                <h6>Upload a different photo...</h6>
+
+                <input type="file" class="form-control" id="upload_image" name="profileImage" style="overflow: hidden;">
+              </div>
+            </div>
+
+            <!-- edit form column -->
+            <div class="col-xl-8 col-md-12 personal-info">
+              <h3>Personal info</h3>
+
+
+                <input type="hidden" name="_method" value="PUT">
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Full Name:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="name" value="{{user.name}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Email:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="email" value="{{user.email}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Phone No:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="contact" value="{{user.contact}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Date of Birth:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="date" name="dob" value="{{dob}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Education:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="education" value="{{user.education}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Speciality:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="speciality" value="{{user.speciality}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Degree:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="degree" value="{{user.degree}}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Chamber:</label>
+                  <div class="col-lg-8">
+                    <input class="form-control" type="text" name="chamber" value="{{user.chamber}}">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="doctorProfile"><input type="button" class="btn btn-dark" value="Cancel"></a>
+              </form>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!-- Form ends for profile edit -->
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</section>

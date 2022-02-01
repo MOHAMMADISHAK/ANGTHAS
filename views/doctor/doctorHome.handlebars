@@ -1,0 +1,135 @@
+<!-- navbar -->
+  {{> _docNav}}
+<!-- end of navbar -->
+<style>
+  .calendar_body {
+    margin: 0px 0px;
+    margin-top: 15px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 1100px;
+    margin:2%;
+  }
+
+  @media (max-width:500px){
+  }
+</style>
+
+    <!-- cards -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <div class="row pt-md-5 mt-md-3 mb-5 ml-1">
+              <div class="col-xl-4 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-user fa-3x text-danger"></i>
+                      <div class="text-right text-secondary">
+                        <h5>Appointment Requests</h5>
+                        {{#if apts}}
+                        <h3>{{apts.length}}</h3>
+                        {{else}}
+                        <h3>0</h3>
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary">
+                    <a href="{{userName}}/newAppointments" style="text-decoration:none">
+                    <i class="far fa-eye mr-3"></i>
+                    <span>View</span>
+                  </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-user fa-3x text-primary"></i>
+                      <div class="text-right text-secondary">
+                        <h5>Scheduled Appointments</h5>
+                        {{#if aptCal}}
+                        <h3>{{aptCal.length}}</h3>
+                        {{else}}
+                        <h3>0</h3>
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary">
+                    <a href="{{userName}}/appointment" style="text-decoration:none">
+                    <i class="far fa-eye mr-3"></i>
+                    <span>View</span>
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end of cards -->
+
+    <!-- tables -->
+    <section>
+      <div class="container-fluid">
+        <div class="row mb-5">
+          <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <div class="row justify-content-center ">
+
+              <div class="col-xl-10 col-12 calendar_body align-item-center">
+                <div value='litera' id='calendar'></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end of tables -->
+
+    <script>
+    var startTime, endTime, eventTitle;
+    var timeObj = new Array();
+    "{{#each allApts}}"
+    startTime = "{{formatDate appointmentDate ''}}".split("+");
+    startTime = startTime[0];
+    endTime = "{{formatDate appointmentEnd ''}}".split("+");
+    endTime = endTime[0];
+    eventTitle = 'Appointment with '+ "{{patientId.name}}";
+
+    timeObj.push({end:endTime,
+    start:startTime,
+    title:eventTitle});
+    "{{/each}}"
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          },
+          initialDate: '2021-07-01',
+          navLinks: true, // can click day/week names to navigate views
+          nowIndicator: true,
+
+          weekNumbers: true,
+          weekNumberCalculation: 'ISO',
+
+          editable: true,
+          selectable: true,
+          dayMaxEvents: true, // allow "more" link when too many events
+          events: timeObj
+        });
+        calendar.render();
+      });
+    </script>

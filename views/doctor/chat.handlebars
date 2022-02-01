@@ -1,0 +1,68 @@
+
+<!-- navbar -->
+{{> _docNav}}
+<!-- end of navbar -->
+
+<!-- patient table -->
+<section>
+  <div class="container-fluid">
+    <div class="row" >
+      <div class="col-xl-10 col-lg-9 col-md-8 ml-auto mt-0">
+        <div class="pt-md-0 mt-md-0 mb-0 col-xl-12 ml-0 pl-0" >
+
+         <div class="leftpane bg-light mt-3">
+          <div class="row">
+            <div class="container-fluid">
+              <form class="customSearch mt-5 ml-2" method="post">
+                <input type="text" class="textbox" placeholder="Search">
+              </form>
+            </div>
+          </div>
+          <div class="row mt-3 ml-2">
+            <div class="container-fluid">
+              <p class="font-weight-bold"><h6>Contact List</h6></p>
+
+              <ul class="friends-list">
+                {{#each friendList}}
+                <li class="friendlist">
+                  <a href="/doctor/{{../userName}}/chat/{{this.friendId.userName}}" style="text-decoration: none;">
+                    <div class="row">
+                      <div class="col-md-3 p-2">
+                        {{#if this.friendId.profileImage}}
+                        <div class="msg-img" style="background-image: url(/uploads/{{this.friendId.profileImage}})">
+                        </div>
+                        {{else}}
+                        <div class="msg-img" style="background-image: url(/uploads/default.jpg)">
+                        </div>
+                        {{/if}}
+                      </div>
+                      <div class="col-md-8 mt-3">
+                        <p class="text-dark">{{this.friendId.name}}</p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-xl-6 col-md-6 col-6" style="margin-top:25%">
+            <img src="/images/chat.jpg"  width="240" height="240" class="rounded-circle">
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center" style="margin-right:20%">
+            <h4>Select a contact to start a chat</h4>
+            <div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
